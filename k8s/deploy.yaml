@@ -20,12 +20,10 @@ spec:
     spec:
       containers:
         - name: ot-light
-          image: "registry.buildpiper.in/ot-light:${BP_IMAGE_TAG}"
+          image: registry.buildpiper.in/ot-light:${BP_IMAGE_TAG}
           imagePullPolicy: IfNotPresent
-
           ports:
             - containerPort: 80
-
           resources:
             requests:
               cpu: 200m
