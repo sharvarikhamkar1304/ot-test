@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ot-light
+  namespace: default
+  labels:
+    app: ot-light
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ot-light
+
+  template:
+    metadata:
+      labels:
+        app: ot-light
+
+    spec:
+      containers:
+        - name: ot-light
+          image: "registry.buildpiper.in/ot-light:${BP_IMAGE_TAG}"
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 80
+
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+
+      imagePullSecrets:
+        - name: bp-ecr-repo
