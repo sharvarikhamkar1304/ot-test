@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ot-light-v2        
+  namespace: sr-test
+  labels:
+    app: ot-light-v2    
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ot-light-v2     
+
+  template:
+    metadata:
+      labels:
+        app: ot-light-v2  
+
+    spec:
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Exists"
+          effect: "NoSchedule"
+
+        - key: "kubernetes.io/hostname"   
+          operator: "Exists"
+          effect: "NoSchedule"
+
+      containers:
+        - name: ot-light
+          image: registry.buildpiper.in/ot-light:${BP_IMAGE_TAG}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 5m        
+              memory: 32Mi
+            limits:
+              cpu: 50m
+              memory: 64Mi
+
+      imagePullSecrets:
+        - name: bp-ecr-repo-regcred
