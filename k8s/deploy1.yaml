@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ot-light-v2        
-  namespace: sr-test
+  namespace: sr-test1
   labels:
     app: ot-light-v2    
 
