@@ -29,7 +29,7 @@ spec:
 
       containers:
         - name: ot-light
-          image: "registry.buildpiper.in/ot-light:${BP_IMAGE_TAG}"
+          image: "registry.buildpiper.in/automation-682046mu117xjpt/dev/devcommunity:${BP_IMAGE_TAG}"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
